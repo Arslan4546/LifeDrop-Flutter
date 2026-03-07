@@ -1,35 +1,4 @@
-# ============================================
-# 🔐 ENVIRONMENT VARIABLES & SECRETS (CRITICAL!)
-# ============================================
-.env
-.env.local
-.env.development
-.env.production
-*.env
-
-# Sensitive configuration files
-one_signal_config.json
-google_maps_api_key.txt
-firebase_options.dart
-
-# ============================================
-# 🔑 API KEYS & CONFIG FILES (Don't Commit!)
-# ============================================
-# Keystore files (Android signing)
-*.jks
-*.keystore
-
-# Apple signing files
-*.p12
-*.mobileprovision
-
-# Local secrets
-secrets/
-config/secrets.yaml
-
-# ============================================
-# 📁 Miscellaneous Files
-# ============================================
+# Miscellaneous
 *.class
 *.log
 *.pyc
@@ -43,9 +12,7 @@ config/secrets.yaml
 .swiftpm/
 migrate_working_dir/
 
-# ============================================
-# 🛠️ IntelliJ Related
-# ============================================
+# IntelliJ related
 *.iml
 *.ipr
 *.iws
@@ -56,9 +23,7 @@ migrate_working_dir/
 # is commented out by default.
 #.vscode/
 
-# ============================================
-# ☕ Flutter/Dart/Pub Related
-# ============================================
+# Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
 .dart_tool/
@@ -68,67 +33,13 @@ migrate_working_dir/
 /build/
 /coverage/
 
-# ============================================
-# 📱 Symbolication & Obfuscation (Optional)
-# ============================================
+# Symbolication related
 app.*.symbols
+
+# Obfuscation related
 app.*.map.json
 
-# ============================================
-# 🤖 Android Studio Build Artifacts
-# ============================================
+# Android Studio will place build artifacts here
 /android/app/debug
 /android/app/profile
 /android/app/release
-
-# ============================================
-# 🍎 iOS Build Artifacts
-# ============================================
-/ios/Pods/
-/ios/Runner.xcworkspace/
-/ios/Runner.xcodeproj/project.pbxuser
-/ios/build/
-
-# ============================================
-# 🧪 Testing Files (Can commit test results but not generated code)
-# ============================================
-test_coverage.info
-.lcov.info
-.nyc_output/
-
-# ============================================
-# 💾 Local Database (If using SQLite locally)
-# ============================================
-*.db
-*.sqlite
-*.db-journal
-
-# ============================================
-#  Network Caches
-# ============================================
-*.cache
-network_cache/
-
-# ============================================
-# 📦 Generated Files (Will recreate on build_runner run)
-# ============================================
-lib/core/injection_container.freezed.dart
-lib/data/models/*.freezed.dart
-lib/presentation/blocs/*.g.dart
-lib/data/datasources/*.g.dart
-
-# ============================================
-# ️ Temporary Files
-# ============================================
-tmp/
-temp/
-*.tmp
-*.temp
-
-# ============================================
-# 📝 Backup Files
-# ============================================
-*~
-.backup
-.bak
-*.bak
