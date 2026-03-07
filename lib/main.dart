@@ -13,14 +13,16 @@ class LifeDropApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'LifeDrop Splash',
-      theme: ThemeData(scaffoldBackgroundColor: const Color(0xFFFCF9F9)),
+      theme: ThemeData(
+        scaffoldBackgroundColor: const Color.fromARGB(255, 16, 9, 9),
+      ),
       home: const SplashScreen(),
     );
   }
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -73,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen>
         children: [
           // Subtle background gradient/lighting
           Positioned(
-            top: -size.height * 0.2,
+            top: -size.height * 0.1,
             left: -size.width * 0.2,
             child: Container(
               width: size.width * 0.8,
@@ -81,7 +83,7 @@ class _SplashScreenState extends State<SplashScreen>
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(
-                  colors: [Colors.white.withOpacity(0.8), Colors.red],
+                  colors: [Colors.white.withOpacity(0.8), Colors.transparent],
                 ),
               ),
             ),
