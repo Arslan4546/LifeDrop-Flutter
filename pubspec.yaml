@@ -1,5 +1,5 @@
 name: life_drop
-description: "A new Flutter project."
+description: "Blood donation management app with OneSignal notifications & Supabase backend"
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -31,9 +31,69 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.8
+  # ============================================
+  # 🧠 STATE MANAGEMENT & ROUTING
+  # ============================================
+  flutter_bloc: ^9.1.1              # BLoC state management
+  go_router: ^17.1.0                # Declarative routing system
+  get_it: ^9.2.1                    # Service locator / Dependency Injection
+  injectable: ^2.4.0                # Code generation for DI registration
+  equatable: ^2.0.5                 # Value comparison for bloc states
+  rxdart: ^0.28.0                   # Reactive streams for BLoC
+  
+  # ============================================
+  # 🔥 BACKEND - SUPABASE
+  # ============================================
+  supabase_flutter: ^2.3.4          # Official Supabase SDK (Auth, DB, Storage, Realtime)
+  
+  # ============================================
+  # 🔔 PUSH NOTIFICATIONS - ONESIGNAL
+  # ============================================
+  onesignal_flutter: ^5.1.2         # Push notifications service (Free tier: 10k/month)
+  
+  # ============================================
+  # 🗺️ MAPS & LOCATION
+  # ============================================
+  google_maps_flutter: ^2.5.0       # Interactive map widget
+  geolocator: ^14.0.2               # GPS position & permission handling
+  geocoding: ^4.0.0                 # Reverse geocoding (coordinates → address)
+  location: ^8.0.1                  # Advanced location tracking & permissions
+  
+  # ============================================
+  # 📊 DATA HANDLING & JSON
+  # ============================================
+  json_annotation: ^4.9.0           # JSON serialization annotations
+  freezed_annotation: ^3.1.0        # Immutable models with freezed
+  
+  # ============================================
+  # 🎨 UI COMPONENTS
+  # ============================================
+  cupertino_icons: ^1.0.8           # iOS style icons
+  cached_network_image: ^3.3.1      # Network image caching
+  shimmer: ^3.0.0                   # Loading skeletons
+  flutter_svg: ^2.0.9               # Vector icon support
+  intl: ^0.20.2                     # Date/time formatting utilities
+  percent_indicator: ^4.2.3         # Custom progress indicators
+  auto_size_text: ^3.0.0            # Responsive text sizing
+  
+  # ============================================
+  # 🔐 AUTHENTICATION
+  # ============================================
+  sign_in_with_apple: ^7.0.1        # Apple Sign-in (required for iOS)
+  url_launcher: ^6.2.4              # External links / phone calls
+  
+  # ============================================
+  # 💾 STORAGE & UTILITIES
+  # ============================================
+  shared_preferences: ^2.2.2        # Local key-value storage
+  path_provider: ^2.1.2             # File paths for local storage
+  uuid: ^4.4.0                      # Unique ID generation
+  flutter_dotenv: ^6.0.0            # Environment variable management (.env files)
+  
+  # ============================================
+  # 🔕 LOCAL NOTIFICATIONS (Optional)
+  # ============================================
+  flutter_local_notifications: ^21.0.0  # Scheduled/local notifications
 
 dev_dependencies:
   flutter_test:
@@ -42,9 +102,19 @@ dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
+  # package. See that file for deactivating specific lint rules and activating additional ones.
   flutter_lints: ^6.0.0
+
+  # Code Generation Tools (Must be run after each dependency change)
+  build_runner: ^2.4.8              # Run code generators
+  injectable_generator: ^2.4.1      # Generate DI injection files
+  json_serializable: ^6.8.0         # JSON serialization codegen
+  freezed: ^3.2.5                   # Freezed models codegen
+  
+  # Testing Helpers
+  bloc_test: ^10.0.0                 # Unit test helpers for BLoCs
+  mockito: ^5.4.4                   # Mocking for unit tests
+  golden_toolkit: ^0.15.0           # Screenshot testing for UI
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -57,6 +127,15 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # ============================================
+  # ASSETS SECTION (Required for .env & images)
+  # ============================================
+  assets:
+    - .env                          # Environment variables (Supabase, OneSignal, Maps Keys)
+    - assets/images/
+    - assets/icons/
+    - assets/fonts/
+
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -66,7 +145,7 @@ flutter:
   # https://flutter.dev/to/resolution-aware-images
 
   # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/to/asset-from-package
+  # https://flutter.dev/to/font-from-package
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
