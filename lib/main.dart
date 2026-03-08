@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'screens/onboarding_screen.dart';
+
 void main() {
   runApp(const LifeDropApp());
 }
@@ -16,7 +18,8 @@ class LifeDropApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: const Color.fromARGB(255, 16, 9, 9),
       ),
-      home: const SplashScreen(),
+      home: const OnboardingScreen(),
+      // const SplashScreen(),
     );
   }
 }
@@ -52,11 +55,38 @@ class _SplashScreenState extends State<SplashScreen>
     );
 
     // Animate from 0 to 35% (0.35)
-    _progressAnimation = Tween<double>(begin: 0.0, end: 0.35).animate(
+    _progressAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeOutQuart),
     );
 
-    _animationController.forward();
+    _animationController.forward().then((_) {
+      // Navigate to the OnboardingScreen after the splash finishes
+      if (mounted) {
+        Navigator.of(context).pushReplacement(
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                const OnboardingScreen(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(1.0, 0.0);
+                  const end = Offset.zero;
+                  const curve = Curves.easeInOutCubic;
+
+                  var tween = Tween(
+                    begin: begin,
+                    end: end,
+                  ).chain(CurveTween(curve: curve));
+
+                  return SlideTransition(
+                    position: animation.drive(tween),
+                    child: child,
+                  );
+                },
+            transitionDuration: const Duration(milliseconds: 600),
+          ),
+        );
+      }
+    });
   }
 
   @override
