@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'home_screen.dart';
+
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
 
@@ -33,12 +35,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         curve: Curves.easeInOut,
       );
     } else {
-      // TODO: Navigate to Home or Auth
+      _navigateToHome();
     }
   }
 
   void _onSkipPressed() {
-    // TODO: Navigate to Home or Auth
+    _navigateToHome();
+  }
+
+  void _navigateToHome() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (_) => const HomeScreen()),
+    );
   }
 
   @override
@@ -228,9 +236,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       // Bottom Link or Indicator line
                       if (_currentPageIndex == 2)
                         TextButton(
-                          onPressed: () {
-                            // TODO: Sign In
-                          },
+                          onPressed: _navigateToHome,
                           child: Text(
                             'Sign In',
                             style: GoogleFonts.inter(
