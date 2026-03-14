@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:life_drop/core/constants/app_colors.dart';
+import 'package:life_drop/core/constants/app_fonts.dart';
 
 class UrgentBloodCard extends StatelessWidget {
-  final String bloodType;
-  final String hospitalName;
-  final String distance;
-  final String timeRemaining;
-
   const UrgentBloodCard({
     super.key,
     required this.bloodType,
@@ -15,25 +11,26 @@ class UrgentBloodCard extends StatelessWidget {
     required this.timeRemaining,
   });
 
+  final String bloodType;
+  final String hospitalName;
+  final String distance;
+  final String timeRemaining;
+
   @override
   Widget build(BuildContext context) {
-    final Color primaryRed = const Color(0xFFE53935);
-    final Color textDark = const Color(0xFF131A2A);
-    final Color textSubtitle = const Color(0xFF5A6B80);
-
     return Container(
-      width: 280, // Fixed width for horizontal scroll
+      width: 280,
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(32),
         border: Border.all(
-          color: primaryRed.withOpacity(0.15),
-          width: 2, // Slight red border as per design
+          color: AppColors.primaryColor.withOpacity(0.15),
+          width: 2,
         ),
         boxShadow: [
           BoxShadow(
-            color: primaryRed.withOpacity(0.05),
+            color: AppColors.primaryColor.withOpacity(0.05),
             blurRadius: 15,
             offset: const Offset(0, 8),
           ),
@@ -42,31 +39,30 @@ class UrgentBloodCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Top Row: Blood Type & Hospital Details & URGENT Badge
+          // Top row: blood type circle + hospital info + URGENT badge
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Blood Type Circle
+              // Blood type circle
               Container(
                 width: 56,
                 height: 56,
-                decoration: const BoxDecoration(
-                  color: Color(0xFFFAE9E9), // Light red bg
+                decoration: BoxDecoration(
+                  color: AppColors.primaryColor.withOpacity(0.1),
                   shape: BoxShape.circle,
                 ),
                 child: Center(
                   child: Text(
                     bloodType,
-                    style: GoogleFonts.poppins(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: primaryRed,
+                    style: AppFonts.headingSmall(
+                      color: AppColors.primaryColor,
+                      weight: FontWeight.w700,
                     ),
                   ),
                 ),
               ),
               const SizedBox(width: 12),
-              
+
               // Hospital details
               Expanded(
                 child: Column(
@@ -74,10 +70,9 @@ class UrgentBloodCard extends StatelessWidget {
                   children: [
                     Text(
                       hospitalName,
-                      style: GoogleFonts.inter(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: textDark,
+                      style: AppFonts.bodyMedium(
+                        color: AppColors.textPrimaryColor,
+                        weight: FontWeight.w700,
                       ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -85,79 +80,76 @@ class UrgentBloodCard extends StatelessWidget {
                     const SizedBox(height: 2),
                     Text(
                       distance,
-                      style: GoogleFonts.inter(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w400,
-                        color: textSubtitle,
+                      style: AppFonts.bodySmall(
+                        color: AppColors.textSecondaryColor,
                       ),
                     ),
                   ],
                 ),
               ),
-              
+
               // URGENT badge
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF05151), // Slightly different red
+                  color: AppColors.primaryColor,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Text(
                   'URGENT',
-                  style: GoogleFonts.inter(
-                    fontSize: 10,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white,
+                  style: AppFonts.bodySmall(
+                    color: AppColors.cardColor,
+                    weight: FontWeight.w700,
                   ),
                 ),
               ),
             ],
           ),
-          
-          const Spacer(), // Pushes bottom row down
 
-          // Bottom Row: Timer & Donate Button
+          const Spacer(),
+
+          // Bottom row: timer + donate button
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // Time Left
+              // Expiry time
               Row(
                 children: [
-                  Icon(
-                    Icons.access_time_filled, // Filled clock
-                    color: const Color(0xFF718298), // Greyish blue
+                  const Icon(
+                    Icons.access_time_filled,
+                    color: AppColors.textSecondaryColor,
                     size: 16,
                   ),
                   const SizedBox(width: 6),
                   Text(
                     'Expires in $timeRemaining',
-                    style: GoogleFonts.inter(
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
-                      color: const Color(0xFF718298),
+                    style: AppFonts.bodySmall(
+                      color: AppColors.textSecondaryColor,
+                      weight: FontWeight.w500,
                     ),
                   ),
                 ],
               ),
-              
-              // Donate Button
+
+              // Donate button
               ElevatedButton(
                 onPressed: () {},
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryRed,
-                  foregroundColor: Colors.white,
+                  backgroundColor: AppColors.primaryColor,
+                  foregroundColor: AppColors.cardColor,
                   elevation: 0,
-                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 0,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
                   ),
                 ),
                 child: Text(
                   'Donate Now',
-                  style: GoogleFonts.inter(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: AppFonts.bodySmall(weight: FontWeight.w600),
                 ),
               ),
             ],
