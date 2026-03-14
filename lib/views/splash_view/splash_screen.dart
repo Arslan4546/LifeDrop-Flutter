@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:life_drop/core/constants/app_assets.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
-import 'package:life_drop/views/on_boarding_view/on_boarding_screen.dart';
+import 'package:life_drop/core/routes/route_names.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,43 +19,18 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
-    // Setup animation for the progress bar
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 3),
     );
 
-    // Animate from 0 to 35% (0.35)
     _progressAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _animationController, curve: Curves.easeOutQuart),
     );
 
     _animationController.forward().then((_) {
-      // Navigate to the OnboardingScreen after the splash finishes
       if (mounted) {
-        Navigator.of(context).pushReplacement(
-          PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) =>
-                const OnboardingScreen(),
-            transitionsBuilder:
-                (context, animation, secondaryAnimation, child) {
-                  const begin = Offset(1.0, 0.0);
-                  const end = Offset.zero;
-                  const curve = Curves.easeInOutCubic;
-
-                  var tween = Tween(
-                    begin: begin,
-                    end: end,
-                  ).chain(CurveTween(curve: curve));
-
-                  return SlideTransition(
-                    position: animation.drive(tween),
-                    child: child,
-                  );
-                },
-            transitionDuration: const Duration(milliseconds: 600),
-          ),
-        );
+        Navigator.pushReplacementNamed(context, RouteNames.onboardingScreens);
       }
     });
   }

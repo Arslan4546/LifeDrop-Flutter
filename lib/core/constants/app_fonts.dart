@@ -55,12 +55,14 @@ class AppFonts {
     FontWeight? weight,
     double? letterSpacing,
     Color? color,
+    double? height,
   }) {
     return GoogleFonts.inter(
       fontSize: size ?? 16,
       fontWeight: weight ?? FontWeight.w500,
       letterSpacing: letterSpacing ?? 0,
       color: color,
+      height: height,
     );
   }
 
@@ -70,12 +72,14 @@ class AppFonts {
     FontWeight? weight,
     double? letterSpacing,
     Color? color,
+    double? height,
   }) {
     return GoogleFonts.inter(
       fontSize: size ?? 14,
       fontWeight: weight ?? FontWeight.w400,
       letterSpacing: letterSpacing ?? 0,
       color: color,
+      height: height,
     );
   }
 
@@ -85,12 +89,14 @@ class AppFonts {
     FontWeight? weight,
     double? letterSpacing,
     Color? color,
+    double? height,
   }) {
     return GoogleFonts.inter(
       fontSize: size ?? 12,
       fontWeight: weight ?? FontWeight.w400,
       letterSpacing: letterSpacing ?? 0,
       color: color,
+      height: height,
     );
   }
 }

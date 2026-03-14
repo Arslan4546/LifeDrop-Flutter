@@ -12,8 +12,8 @@ class AppRoutes {
 
       case RouteNames.onboardingScreens:
         return PageRouteBuilder(
-          pageBuilder: (_, _, _) => const OnboardingScreen(),
-          transitionsBuilder: (_, animation, _, child) {
+          pageBuilder: (ctx, anim, secAnim) => const OnboardingScreen(),
+          transitionsBuilder: (ctx, animation, secAnim, child) {
             const begin = Offset(1.0, 0.0);
             const end = Offset.zero;
 
@@ -28,7 +28,21 @@ class AppRoutes {
         );
 
       case RouteNames.homeScreen:
-        return MaterialPageRoute(builder: (_) => const HomeScreen());
+        return PageRouteBuilder(
+          pageBuilder: (ctx, anim, secAnim) => const HomeScreen(),
+          transitionsBuilder: (ctx, animation, secAnim, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+
+            final tween = Tween(begin: begin, end: end);
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 600),
+        );
 
       default:
         return MaterialPageRoute(
