@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _animationController.forward().then((_) {
       if (mounted) {
-        Navigator.pushReplacementNamed(context, RouteNames.onboardingScreens);
+        Navigator.pushReplacementNamed(context, RouteNames.onboardingView);
       }
     });
   }

@@ -1,16 +1,23 @@
 class RouteNames {
-  static const splashScreen = "/";
-  static const onboardingScreens = "/onboarding";
+  // initial routes names
+  static const splashView = "/";
+  static const onboardingView = "/onboarding";
 
-  static const loginScreen = "/login";
-  static const signupScreen = "/signup";
+  // auth route names
+  static const loginView = "/login";
+  static const signupView = "/signup";
 
-  static const homeScreen = "/home";
+  //donor route names
+  static const donorHomeView = "/donor-home";
+  static const donorProfileView = "/donor-profile";
+  static const donorRequestView = "/donor-request";
+  static const donorAlertView = "/donor-alert";
+  static const donorSearchView = "/donor-search";
 
-  static const findDonorsScreen = "/find-donors";
-  static const createRequestScreen = "/create-request";
-
-  static const requestsScreen = "/requests";
-
-  static const profileScreen = "/profile";
+  // recipient route names
+  static const recipientHomeView = "/recipient-home";
+  static const recipientProfileView = "/recipient-profile";
+  static const recipientRequestView = "/recipient-request";
+  static const recipientAlertView = "/recipient-alert";
+  static const recipientSearchView = "/recipient-search";
 }
