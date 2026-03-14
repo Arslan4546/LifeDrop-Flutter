@@ -5,22 +5,36 @@ import 'package:life_drop/views/on_boarding_view/on_boarding_screen.dart';
 import 'package:life_drop/views/splash_view/splash_screen.dart';
 
 class AppRoutes {
-  static Map<String, WidgetBuilder> routes = {
-    RouteNames.splashScreen: (context) => SplashScreen(),
+  static Route generateRoute(RouteSettings settings) {
+    switch (settings.name) {
+      case RouteNames.splashScreen:
+        return MaterialPageRoute(builder: (_) => const SplashScreen());
 
-    RouteNames.onboardingScreens: (context) => OnboardingScreen(),
+      case RouteNames.onboardingScreens:
+        return PageRouteBuilder(
+          pageBuilder: (_, _, _) => const OnboardingScreen(),
+          transitionsBuilder: (_, animation, _, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
 
-    // RouteNames.loginScreen: (context) => LoginScreen(),
+            final tween = Tween(begin: begin, end: end);
 
-    // RouteNames.signupScreen: (context) => SignupScreen(),
-    RouteNames.homeScreen: (context) => HomeScreen(),
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 600),
+        );
 
-    // RouteNames.findDonorsScreen: (context) => FindDonorsScreen(),
+      case RouteNames.homeScreen:
+        return MaterialPageRoute(builder: (_) => const HomeScreen());
 
-    // RouteNames.createRequestScreen: (context) => CreateRequestScreen(),
-
-    // RouteNames.requestsScreen: (context) => RequestsScreen(),
-
-    // RouteNames.profileScreen: (context) => ProfileScreen(),
-  };
+      default:
+        return MaterialPageRoute(
+          builder: (_) =>
+              const Scaffold(body: Center(child: Text("No Route Found"))),
+        );
+    }
+  }
 }

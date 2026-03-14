@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
-
-import 'package:life_drop/views/splash_view/splash_screen.dart';
+import 'package:life_drop/core/routes/app_routes.dart';
+import 'package:life_drop/core/routes/route_names.dart';
 
 void main() {
   runApp(const LifeDropApp());
@@ -16,7 +16,8 @@ class LifeDropApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'LifeDrop',
       theme: ThemeData(scaffoldBackgroundColor: AppColors.backgroundColor),
-      home: const SplashScreen(),
+      onGenerateRoute: AppRoutes.generateRoute,
+      initialRoute: RouteNames.splashScreen,
     );
   }
 }
