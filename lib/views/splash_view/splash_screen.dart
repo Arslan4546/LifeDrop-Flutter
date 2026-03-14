@@ -67,69 +67,76 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    // Responsive sizing
     final size = MediaQuery.of(context).size;
 
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Column(
+      body: Stack(
         children: [
-          // Main Content
+          /// Logo + Title + Subtitle — perfectly centered
           Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                // Logo Circle
-                Image.asset(AppAssets.splashLogo, height: 120),
+                Image.asset(AppAssets.splashLogo, height: size.height * 0.15),
 
-                // App Title
+                SizedBox(height: size.height * 0.015),
+
                 Text(
                   'LifeDrop',
                   style: AppFonts.headingLarge(
                     color: AppColors.textPrimaryColor,
                     weight: FontWeight.bold,
-                    size: 48,
+                    size: size.width * 0.12,
                     letterSpacing: -1.5,
                   ),
                 ),
 
-                // Subtitle
+                SizedBox(height: size.height * 0.005),
+
                 Text(
                   'Every drop counts.',
                   style: AppFonts.bodyLarge(
                     color: AppColors.textSecondaryColor,
                     weight: FontWeight.w500,
-                    size: 16,
+                    size: size.width * 0.04,
                     letterSpacing: 0.2,
                   ),
                 ),
-
-                // Progress Bar
               ],
             ),
           ),
-          AnimatedBuilder(
-            animation: _progressAnimation,
-            builder: (context, child) {
-              return Container(
-                width: size.width * 0.6,
-                height: 6,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFFCEFEF),
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                alignment: Alignment.centerLeft,
-                child: FractionallySizedBox(
-                  widthFactor: _progressAnimation.value,
+
+          /// Progress Bar — pinned to the bottom
+          Positioned(
+            bottom: size.height * 0.05,
+            left: 0,
+            right: 0,
+            child: AnimatedBuilder(
+              animation: _progressAnimation,
+              builder: (context, child) {
+                return Center(
                   child: Container(
+                    width: size.width * 0.6,
+                    height: 6,
                     decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
+                      color: const Color(0xFFFCEFEF),
                       borderRadius: BorderRadius.circular(10),
                     ),
+                    alignment: Alignment.centerLeft,
+                    child: FractionallySizedBox(
+                      widthFactor: _progressAnimation.value,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.primaryColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
         ],
       ),
