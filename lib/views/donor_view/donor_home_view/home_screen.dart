@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:life_drop/app_widgets/nearby_request_tile.dart';
 import 'package:life_drop/app_widgets/urgent_blood_card.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
-import 'package:life_drop/views/home_view/home_screen_widgets.dart';
+import 'package:life_drop/views/donor_view/donor_home_view/home_screen_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
