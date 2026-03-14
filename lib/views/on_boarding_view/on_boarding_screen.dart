@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:life_drop/views/home_view/home_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-import 'home_screen.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -44,9 +43,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _navigateToHome() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(builder: (_) => const HomeScreen()),
-    );
+    Navigator.of(
+      context,
+    ).pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
   }
 
   @override
@@ -58,13 +57,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           builder: (context, constraints) {
             // Determine sizing factor based on screen height
             final isSmallScreen = constraints.maxHeight < 700;
-            final double horizontalPadding = constraints.maxWidth * 0.06; // Adaptive padding
-            
+            final double horizontalPadding =
+                constraints.maxWidth * 0.06; // Adaptive padding
+
             return Column(
               children: [
                 // Custom Top Bar Area (changes based on page)
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 8.0),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: horizontalPadding,
+                    vertical: 8.0,
+                  ),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
@@ -73,7 +76,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         Align(
                           alignment: Alignment.centerLeft,
                           child: IconButton(
-                            icon: const Icon(Icons.arrow_back, color: Colors.black87),
+                            icon: const Icon(
+                              Icons.arrow_back,
+                              color: Colors.black87,
+                            ),
                             onPressed: () {
                               _pageController.previousPage(
                                 duration: const Duration(milliseconds: 300),
@@ -163,8 +169,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 // Bottom Nav Area (Indicator & Next Button)
                 Padding(
                   padding: EdgeInsets.symmetric(
-                    horizontal: horizontalPadding, 
-                    vertical: isSmallScreen ? 16.0 : 24.0
+                    horizontal: horizontalPadding,
+                    vertical: isSmallScreen ? 16.0 : 24.0,
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -230,9 +236,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           ),
                         ),
                       ),
-                      
+
                       SizedBox(height: isSmallScreen ? 16 : 24),
-                      
+
                       // Bottom Link or Indicator line
                       if (_currentPageIndex == 2)
                         TextButton(
@@ -274,7 +280,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     required Widget imageSection,
   }) {
     final isSmallScreen = constraints.maxHeight < 700;
-    
+
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: constraints.maxWidth * 0.02),
       child: Column(
@@ -282,26 +288,27 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           SizedBox(height: isSmallScreen ? 0 : 10),
           // Image / Illustration
           Expanded(child: imageSection),
-          
+
           SizedBox(height: isSmallScreen ? 24 : 48), // Spacing below image
-          
           // Title
           Text(
             title,
             style: GoogleFonts.poppins(
               fontSize: isSmallScreen ? 26 : 30, // Adaptive size
               fontWeight: FontWeight.w700,
-              color: textDark, 
+              color: textDark,
               letterSpacing: -0.5,
             ),
             textAlign: TextAlign.center,
           ),
-          
+
           const SizedBox(height: 16),
-          
+
           // Subtitle
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: constraints.maxWidth * 0.04),
+            padding: EdgeInsets.symmetric(
+              horizontal: constraints.maxWidth * 0.04,
+            ),
             child: Text(
               subtitle,
               style: GoogleFonts.inter(
@@ -335,12 +342,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         // Using a similar map placeholder
         image: const DecorationImage(
           image: NetworkImage(
-              'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg'),
-          fit: BoxFit.cover,
-          colorFilter: ColorFilter.mode(
-            Colors.white54,
-            BlendMode.lighten,
+            'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/master/pass/GoogleMapTA.jpg',
           ),
+          fit: BoxFit.cover,
+          colorFilter: ColorFilter.mode(Colors.white54, BlendMode.lighten),
         ),
       ),
       child: Stack(
@@ -378,19 +383,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         color: Colors.white,
         shape: BoxShape.circle,
         boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 8,
-            offset: Offset(0, 4),
-          ),
+          BoxShadow(color: Colors.black12, blurRadius: 8, offset: Offset(0, 4)),
         ],
       ),
       child: Center(
-        child: Icon(
-          Icons.location_on,
-          color: primaryRed,
-          size: 28,
-        ),
+        child: Icon(Icons.location_on, color: primaryRed, size: 28),
       ),
     );
   }
@@ -430,23 +427,26 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         Container(
           width: double.infinity,
           height: double.infinity,
-          margin: const EdgeInsets.only(bottom: 24), // Leave space for shadow of floating card
+          margin: const EdgeInsets.only(
+            bottom: 24,
+          ), // Leave space for shadow of floating card
           decoration: BoxDecoration(
-             // A tealish background color similar to the image
+            // A tealish background color similar to the image
             color: const Color(0xFF67A6AD),
             borderRadius: BorderRadius.circular(36),
             // Placeholder for the doctor
             image: const DecorationImage(
               image: NetworkImage(
-                  'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=2664&auto=format&fit=crop'),
+                'https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=2664&auto=format&fit=crop',
+              ),
               fit: BoxFit.cover,
             ),
           ),
         ),
-        
+
         // Impact Card overlay
         Positioned(
-          bottom: 4, 
+          bottom: 4,
           right: constraints.maxWidth * 0.05,
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -481,7 +481,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ),
                 ),
                 const SizedBox(width: 14),
-                
+
                 // Impact Text
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -520,7 +520,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFD6DAD3), // Subtle greenish grey matching edge of phone
+        color: const Color(
+          0xFFD6DAD3,
+        ), // Subtle greenish grey matching edge of phone
         borderRadius: BorderRadius.circular(36),
       ),
       child: Stack(
@@ -556,10 +558,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     shape: BoxShape.circle,
                   ),
                 ),
-                
+
                 // Red glowing bell background
                 Container(
-                  width: 120, // fixed size to ensure it matches the layout visually
+                  width:
+                      120, // fixed size to ensure it matches the layout visually
                   height: 120,
                   decoration: BoxDecoration(
                     color: primaryRed,
@@ -580,7 +583,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                   ),
                 ),
-                
+
                 // Small bottom notification indicator inside the phone screen
                 Positioned(
                   bottom: 24,
@@ -602,7 +605,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         width: 16,
                         height: 16,
                         decoration: const BoxDecoration(
-                          color: Color(0xFFE56A54), // slightly different orange/red alert
+                          color: Color(
+                            0xFFE56A54,
+                          ), // slightly different orange/red alert
                           shape: BoxShape.circle,
                         ),
                         child: const Center(
@@ -619,10 +624,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ],
             ),
           ),
-          
+
           // Simulated top notch for phone
           Positioned(
-            top: constraints.maxHeight * (constraints.maxHeight < 700 ? 0.04 : 0.08),
+            top:
+                constraints.maxHeight *
+                (constraints.maxHeight < 700 ? 0.04 : 0.08),
             child: Container(
               width: 80,
               height: 15,

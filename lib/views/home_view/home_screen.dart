@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../widgets/urgent_blood_card.dart';
-import '../widgets/nearby_request_tile.dart';
+import 'package:life_drop/app_widgets/nearby_request_tile.dart';
+import 'package:life_drop/app_widgets/urgent_blood_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -27,7 +26,10 @@ class HomeScreen extends StatelessWidget {
                 // 1. App Bar Area
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: hPadding, vertical: 12.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: hPadding,
+                      vertical: 12.0,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -43,7 +45,8 @@ class HomeScreen extends StatelessWidget {
                               ),
                               child: const Center(
                                 child: Icon(
-                                  Icons.water_drop, // Placeholder for the actual drop icon
+                                  Icons
+                                      .water_drop, // Placeholder for the actual drop icon
                                   color: Colors.white,
                                   size: 18,
                                 ),
@@ -69,10 +72,7 @@ class HomeScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                           ),
                           child: const Center(
-                            child: Icon(
-                              Icons.search,
-                              color: Color(0xFF131A2A),
-                            ),
+                            child: Icon(Icons.search, color: Color(0xFF131A2A)),
                           ),
                         ),
                       ],
@@ -83,7 +83,10 @@ class HomeScreen extends StatelessWidget {
                 // 2. Profile Area
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: hPadding, vertical: 16.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: hPadding,
+                      vertical: 16.0,
+                    ),
                     child: Row(
                       children: [
                         // Avatar
@@ -92,10 +95,7 @@ class HomeScreen extends StatelessWidget {
                           height: 64,
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            border: Border.all(
-                              color: primaryRed,
-                              width: 2,
-                            ),
+                            border: Border.all(color: primaryRed, width: 2),
                             image: const DecorationImage(
                               image: NetworkImage(
                                 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=2070&auto=format&fit=crop',
@@ -136,9 +136,15 @@ class HomeScreen extends StatelessWidget {
                 // 3. Availability Toggle Card
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: hPadding, vertical: 8.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: hPadding,
+                      vertical: 8.0,
+                    ),
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20,
+                        vertical: 20,
+                      ),
                       decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(24),
@@ -202,7 +208,10 @@ class HomeScreen extends StatelessWidget {
                 // 4. Stats Row
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: hPadding, vertical: 16.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: hPadding,
+                      vertical: 16.0,
+                    ),
                     child: Row(
                       children: [
                         // Donations Stats
@@ -301,7 +310,10 @@ class HomeScreen extends StatelessWidget {
                 // 5. Emergency Requests Header
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: hPadding, vertical: 8.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: hPadding,
+                      vertical: 8.0,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -337,7 +349,8 @@ class HomeScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: hPadding),
                       scrollDirection: Axis.horizontal,
                       itemCount: 2, // From design
-                      separatorBuilder: (context, index) => const SizedBox(width: 16),
+                      separatorBuilder: (context, index) =>
+                          const SizedBox(width: 16),
                       itemBuilder: (context, index) {
                         if (index == 0) {
                           return const UrgentBloodCard(
@@ -362,7 +375,10 @@ class HomeScreen extends StatelessWidget {
                 // 7. Nearby Requests Header
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: hPadding, vertical: 24.0).copyWith(bottom: 12.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: hPadding,
+                      vertical: 24.0,
+                    ).copyWith(bottom: 12.0),
                     child: Text(
                       'Nearby Requests',
                       style: GoogleFonts.poppins(
@@ -378,27 +394,28 @@ class HomeScreen extends StatelessWidget {
                 SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: hPadding),
                   sliver: SliverList(
-                    delegate: SliverChildListDelegate(
-                      [
-                        const NearbyRequestTile(
-                          bloodType: 'B+',
-                          clinicName: 'St. Mary\'s Clinic',
-                          scheduleTime: 'Tomorrow, 10:00 AM',
-                        ),
-                        const NearbyRequestTile(
-                          bloodType: 'AB-',
-                          clinicName: 'Hope Medical Center',
-                          scheduleTime: 'Friday, 02:00 PM',
-                        ),
-                      ],
-                    ),
+                    delegate: SliverChildListDelegate([
+                      const NearbyRequestTile(
+                        bloodType: 'B+',
+                        clinicName: 'St. Mary\'s Clinic',
+                        scheduleTime: 'Tomorrow, 10:00 AM',
+                      ),
+                      const NearbyRequestTile(
+                        bloodType: 'AB-',
+                        clinicName: 'Hope Medical Center',
+                        scheduleTime: 'Friday, 02:00 PM',
+                      ),
+                    ]),
                   ),
                 ),
 
                 // 9. Map Snippet
                 SliverToBoxAdapter(
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: hPadding, vertical: 24.0),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: hPadding,
+                      vertical: 24.0,
+                    ),
                     child: Container(
                       width: double.infinity,
                       height: 160,
@@ -406,7 +423,7 @@ class HomeScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(32),
                         image: const DecorationImage(
                           image: NetworkImage(
-                            'https://www.google.com/maps/about/images/treks/map_hero.jpg' // High-res map placeholder 
+                            'https://www.google.com/maps/about/images/treks/map_hero.jpg', // High-res map placeholder
                           ),
                           fit: BoxFit.cover,
                           colorFilter: ColorFilter.mode(
@@ -451,7 +468,10 @@ class HomeScreen extends StatelessWidget {
                           Positioned(
                             bottom: 20,
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 8,
+                              ),
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius: BorderRadius.circular(20),
@@ -478,27 +498,41 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                
-                const SliverToBoxAdapter(child: SizedBox(height: 24)), // Bottom padding before nav bar
+
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: 24),
+                ), // Bottom padding before nav bar
               ],
             );
           },
         ),
       ),
-      
+
       // Basic Bottom Nav
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         selectedItemColor: primaryRed,
         unselectedItemColor: const Color(0xFF8699B0),
-        selectedLabelStyle: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w600),
-        unselectedLabelStyle: GoogleFonts.inter(fontSize: 12, fontWeight: FontWeight.w500),
+        selectedLabelStyle: GoogleFonts.inter(
+          fontSize: 12,
+          fontWeight: FontWeight.w600,
+        ),
+        unselectedLabelStyle: GoogleFonts.inter(
+          fontSize: 12,
+          fontWeight: FontWeight.w500,
+        ),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-          BottomNavigationBarItem(icon: Icon(Icons.volunteer_activism), label: 'Requests'),
-          BottomNavigationBarItem(icon: Icon(Icons.notifications), label: 'Alerts'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.volunteer_activism),
+            label: 'Requests',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Alerts',
+          ),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
