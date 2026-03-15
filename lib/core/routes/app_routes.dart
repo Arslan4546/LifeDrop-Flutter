@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/routes/route_names.dart';
-import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_view.dart';
+import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_view/donor_request_view.dart';
+import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_view/donor_search_view.dart';
 import 'package:life_drop/views/donor_view/donor_home_view/donor_home_screen.dart';
 import 'package:life_drop/views/on_boarding_view/on_boarding_screen.dart';
 import 'package:life_drop/views/splash_view/splash_screen.dart';
@@ -46,6 +47,8 @@ class AppRoutes {
         );
       case RouteNames.donorSearchView:
         return MaterialPageRoute(builder: (_) => const DonorSearchView());
+      case RouteNames.donorRequestView:
+        return MaterialPageRoute(builder: (_) => const DonorRequestView());
 
       default:
         return MaterialPageRoute(
