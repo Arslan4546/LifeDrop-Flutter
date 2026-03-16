@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
+import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_view/donor_request_view_widgets.dart';
 
 class DonorRequestView extends StatelessWidget {
   const DonorRequestView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    print("request veiw called");
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
       // Custom App Bar
@@ -35,14 +35,17 @@ class DonorRequestView extends StatelessWidget {
         ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(50),
-          child: _buildTabBar(),
+          child: RequestTabBar(
+            tabs: const ["Urgent", "Nearby", "Scheduled"],
+            activeIndex: 0,
+            onTabSelected: (index) {},
+          ),
         ),
       ),
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _buildRequestCard(
-            context,
+          RequestCard(
             hospitalName: "City General Hospital",
             bloodGroup: "O+ Group",
             distance: "2.5 km away",
@@ -50,8 +53,7 @@ class DonorRequestView extends StatelessWidget {
             imageUrl:
                 "https://images.unsplash.com/photo-1587350859728-117622bc4a7e?q=80&w=1000",
           ),
-          _buildRequestCard(
-            context,
+          RequestCard(
             hospitalName: "St. Jude Medical Center",
             bloodGroup: "A- Group",
             distance: "4.1 km away",
@@ -59,8 +61,7 @@ class DonorRequestView extends StatelessWidget {
             imageUrl:
                 "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000",
           ),
-          _buildRequestCard(
-            context,
+          RequestCard(
             hospitalName: "North Star Clinic",
             bloodGroup: "B+ Group",
             distance: "1.2 km away",
@@ -71,250 +72,6 @@ class DonorRequestView extends StatelessWidget {
           const SizedBox(height: 80), // Space for Bottom Nav
         ],
       ),
-      bottomNavigationBar: _buildBottomNav(),
-    );
-  }
-
-  // --- 1. Custom Tab Bar ---
-  Widget _buildTabBar() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: AppColors.primaryColor.withOpacity(0.1)),
-        ),
-      ),
-      child: Row(
-        children: [
-          _tabItem("Urgent", isActive: true),
-          _tabItem("Nearby", isActive: false),
-          _tabItem("Scheduled", isActive: false),
-        ],
-      ),
-    );
-  }
-
-  Widget _tabItem(String title, {required bool isActive}) {
-    return Expanded(
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              color: isActive ? AppColors.primaryColor : Colors.transparent,
-              width: 3,
-            ),
-          ),
-        ),
-        child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: GoogleFonts.inter(
-            color: isActive ? AppColors.primaryColor : Colors.grey[500],
-            fontWeight: FontWeight.bold,
-            fontSize: 14,
-          ),
-        ),
-      ),
-    );
-  }
-
-  // --- 2. Reusable Request Card (Fully Responsive) ---
-  Widget _buildRequestCard(
-    BuildContext context, {
-    required String hospitalName,
-    required String bloodGroup,
-    required String distance,
-    required String expiry,
-    required String imageUrl,
-  }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      decoration: BoxDecoration(
-        color: AppColors.cardColor,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          // Image Section with Aspect Ratio
-          ClipRRect(
-            borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-            child: AspectRatio(
-              aspectRatio: 16 / 9,
-              child: Image.network(
-                imageUrl,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) => Container(
-                  color: Colors.grey[300],
-                  child: const Icon(Icons.broken_image, size: 50),
-                ),
-              ),
-            ),
-          ),
-
-          // Content Section
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Title and Blood Group Row
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        hospitalName,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.inter(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.blueGrey,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryColor.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        bloodGroup,
-                        style: GoogleFonts.inter(
-                          color: AppColors.primaryColor,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-
-                // Info and Donate Button Row
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    // Distance and Expiry
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _iconInfo(Icons.location_on, distance, Colors.grey),
-                          const SizedBox(height: 4),
-                          _iconInfo(
-                            Icons.schedule,
-                            expiry,
-                            AppColors.primaryColor,
-                          ),
-                        ],
-                      ),
-                    ),
-                    // Donate Button
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primaryColor,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 12,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        elevation: 4,
-                        shadowColor: AppColors.primaryColor.withOpacity(0.4),
-                      ),
-                      child: Text(
-                        "Donate",
-                        style: GoogleFonts.inter(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Helper for small icon + text info
-  Widget _iconInfo(IconData icon, String text, Color color) {
-    return Row(
-      children: [
-        Icon(icon, size: 14, color: color),
-        const SizedBox(width: 4),
-        Flexible(
-          child: Text(
-            text,
-            overflow: TextOverflow.ellipsis,
-            style: GoogleFonts.inter(
-              color: color,
-              fontSize: 13,
-              fontWeight: color == AppColors.primaryColor
-                  ? FontWeight.w600
-                  : FontWeight.normal,
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-
-  // --- 3. Bottom Navigation Bar ---
-  Widget _buildBottomNav() {
-    return Container(
-      height: 85,
-      decoration: BoxDecoration(
-        color: Colors.white.withOpacity(0.95),
-        border: Border(
-          top: BorderSide(color: AppColors.primaryColor.withOpacity(0.1)),
-        ),
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          _navItem(Icons.home_outlined, "Home", false),
-          _navItem(Icons.water_drop, "Requests", true),
-          _navItem(Icons.map_outlined, "Map", false),
-          _navItem(Icons.person_outline, "Profile", false),
-        ],
-      ),
-    );
-  }
-
-  Widget _navItem(IconData icon, String label, bool isActive) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: isActive ? AppColors.primaryColor : Colors.grey[400]),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: GoogleFonts.inter(
-            fontSize: 11,
-            fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
-            color: isActive ? AppColors.primaryColor : Colors.grey[400],
-          ),
-        ),
-      ],
     );
   }
 }
