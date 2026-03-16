@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
-import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view_widgets/donor_home_view_widgets.dart';
+import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view_widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
