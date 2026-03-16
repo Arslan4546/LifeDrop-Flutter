@@ -4,7 +4,7 @@ import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_alert_vie
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_profile_view/donor_profile_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_view/donor_request_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_view/donor_search_view.dart';
-import 'package:life_drop/views/donor_view/donor_home_view/donor_home_screen.dart';
+import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view.dart';
 import 'package:life_drop/views/on_boarding_view/on_boarding_screen.dart';
 import 'package:life_drop/views/splash_view/splash_screen.dart';
 
@@ -33,7 +33,7 @@ class AppRoutes {
 
       case RouteNames.donorHomeView:
         return PageRouteBuilder(
-          pageBuilder: (ctx, anim, secAnim) => const HomeScreen(),
+          pageBuilder: (ctx, anim, secAnim) => DonorHomeView(),
           transitionsBuilder: (ctx, animation, secAnim, child) {
             const begin = Offset(1.0, 0.0);
             const end = Offset.zero;

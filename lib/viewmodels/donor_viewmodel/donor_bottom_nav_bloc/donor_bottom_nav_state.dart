@@ -7,4 +7,10 @@ class DonorBottomNavState extends Equatable {
 
   @override
   List<Object> get props => [selectedIndex];
+
+  DonorBottomNavState copyWith({int? selectedIndex}) {
+    return DonorBottomNavState(
+      selectedIndex: selectedIndex ?? this.selectedIndex,
+    );
+  }
 }

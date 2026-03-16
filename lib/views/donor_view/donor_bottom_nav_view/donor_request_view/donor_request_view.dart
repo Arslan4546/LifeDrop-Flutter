@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:life_drop/core/constants/app_colors.dart';
 
 class DonorRequestView extends StatelessWidget {
   const DonorRequestView({super.key});
 
-  final Color primaryColor = const Color(0xFFE53734);
-  final Color bgColor = const Color(0xFFF8F6F6);
-  final Color cardColor = Colors.white;
-
   @override
   Widget build(BuildContext context) {
+    print("request veiw called");
     return Scaffold(
-      backgroundColor: bgColor,
+      backgroundColor: AppColors.backgroundColor,
       // Custom App Bar
       appBar: AppBar(
-        backgroundColor: bgColor,
+        backgroundColor: AppColors.backgroundColor,
         elevation: 0,
         centerTitle: true,
         leading: Icon(Icons.menu, color: Colors.blueGrey),
@@ -82,7 +80,7 @@ class DonorRequestView extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: primaryColor.withOpacity(0.1)),
+          bottom: BorderSide(color: AppColors.primaryColor.withOpacity(0.1)),
         ),
       ),
       child: Row(
@@ -102,7 +100,7 @@ class DonorRequestView extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: isActive ? primaryColor : Colors.transparent,
+              color: isActive ? AppColors.primaryColor : Colors.transparent,
               width: 3,
             ),
           ),
@@ -111,7 +109,7 @@ class DonorRequestView extends StatelessWidget {
           title,
           textAlign: TextAlign.center,
           style: GoogleFonts.inter(
-            color: isActive ? primaryColor : Colors.grey[500],
+            color: isActive ? AppColors.primaryColor : Colors.grey[500],
             fontWeight: FontWeight.bold,
             fontSize: 14,
           ),
@@ -132,7 +130,7 @@ class DonorRequestView extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: cardColor,
+        color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -190,13 +188,13 @@ class DonorRequestView extends StatelessWidget {
                         vertical: 4,
                       ),
                       decoration: BoxDecoration(
-                        color: primaryColor.withOpacity(0.1),
+                        color: AppColors.primaryColor.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Text(
                         bloodGroup,
                         style: GoogleFonts.inter(
-                          color: primaryColor,
+                          color: AppColors.primaryColor,
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -218,7 +216,11 @@ class DonorRequestView extends StatelessWidget {
                         children: [
                           _iconInfo(Icons.location_on, distance, Colors.grey),
                           const SizedBox(height: 4),
-                          _iconInfo(Icons.schedule, expiry, primaryColor),
+                          _iconInfo(
+                            Icons.schedule,
+                            expiry,
+                            AppColors.primaryColor,
+                          ),
                         ],
                       ),
                     ),
@@ -226,7 +228,7 @@ class DonorRequestView extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryColor,
+                        backgroundColor: AppColors.primaryColor,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
                           horizontal: 24,
@@ -236,7 +238,7 @@ class DonorRequestView extends StatelessWidget {
                           borderRadius: BorderRadius.circular(30),
                         ),
                         elevation: 4,
-                        shadowColor: primaryColor.withOpacity(0.4),
+                        shadowColor: AppColors.primaryColor.withOpacity(0.4),
                       ),
                       child: Text(
                         "Donate",
@@ -266,7 +268,7 @@ class DonorRequestView extends StatelessWidget {
             style: GoogleFonts.inter(
               color: color,
               fontSize: 13,
-              fontWeight: color == primaryColor
+              fontWeight: color == AppColors.primaryColor
                   ? FontWeight.w600
                   : FontWeight.normal,
             ),
@@ -282,7 +284,9 @@ class DonorRequestView extends StatelessWidget {
       height: 85,
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.95),
-        border: Border(top: BorderSide(color: primaryColor.withOpacity(0.1))),
+        border: Border(
+          top: BorderSide(color: AppColors.primaryColor.withOpacity(0.1)),
+        ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -300,14 +304,14 @@ class DonorRequestView extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(icon, color: isActive ? primaryColor : Colors.grey[400]),
+        Icon(icon, color: isActive ? AppColors.primaryColor : Colors.grey[400]),
         const SizedBox(height: 4),
         Text(
           label,
           style: GoogleFonts.inter(
             fontSize: 11,
             fontWeight: isActive ? FontWeight.bold : FontWeight.w500,
-            color: isActive ? primaryColor : Colors.grey[400],
+            color: isActive ? AppColors.primaryColor : Colors.grey[400],
           ),
         ),
       ],

@@ -8,12 +8,13 @@ import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_profile_v
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_view/donor_request_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_view/donor_search_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view.dart';
 
-class DonorHomeView extends StatelessWidget {
-  DonorHomeView({super.key});
+class DonorNavView extends StatelessWidget {
+  DonorNavView({super.key});
 
   final List<Widget> screens = [
-    DonorHomeView(),
+    const DonorHomeView(),
     const DonorSearchView(),
     const DonorRequestView(),
     const DonorAlertView(),
