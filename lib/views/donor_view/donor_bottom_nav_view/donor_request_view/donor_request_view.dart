@@ -5,6 +5,7 @@ import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_v
 
 class DonorRequestView extends StatelessWidget {
   const DonorRequestView({super.key});
+  final int _activeTabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +16,11 @@ class DonorRequestView extends StatelessWidget {
         backgroundColor: AppColors.backgroundColor,
         elevation: 0,
         centerTitle: true,
-        leading: Icon(Icons.menu, color: Colors.blueGrey),
+
         title: Text(
           "Requests",
           style: GoogleFonts.inter(
-            color: Colors.blueGrey,
+            color: AppColors.textPrimaryColor,
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
@@ -28,7 +29,10 @@ class DonorRequestView extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: IconButton(
-              icon: Icon(Icons.notifications_none, color: Colors.blueGrey),
+              icon: Icon(
+                Icons.notifications_none,
+                color: AppColors.textPrimaryColor,
+              ),
               onPressed: () {},
             ),
           ),
@@ -37,8 +41,12 @@ class DonorRequestView extends StatelessWidget {
           preferredSize: const Size.fromHeight(50),
           child: RequestTabBar(
             tabs: const ["Urgent", "Nearby", "Scheduled"],
-            activeIndex: 0,
-            onTabSelected: (index) {},
+            activeIndex: _activeTabIndex,
+            onTabSelected: (index) {
+              // setState(() {
+              //   _activeTabIndex = index;
+              // });
+            },
           ),
         ),
       ),
@@ -51,7 +59,7 @@ class DonorRequestView extends StatelessWidget {
             distance: "2.5 km away",
             expiry: "Expires in 3h",
             imageUrl:
-                "https://images.unsplash.com/photo-1587350859728-117622bc4a7e?q=80&w=1000",
+                "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1000",
           ),
           RequestCard(
             hospitalName: "St. Jude Medical Center",

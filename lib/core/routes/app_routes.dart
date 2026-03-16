@@ -67,7 +67,7 @@ class AppRoutes {
       case RouteNames.donorSearchView:
         return MaterialPageRoute(builder: (_) => const DonorSearchView());
       case RouteNames.donorRequestView:
-        return MaterialPageRoute(builder: (_) => const DonorRequestView());
+        return MaterialPageRoute(builder: (_) => DonorRequestView());
       case RouteNames.donorAlertView:
         return MaterialPageRoute(builder: (_) => const DonorAlertView());
       case RouteNames.donorProfileView:

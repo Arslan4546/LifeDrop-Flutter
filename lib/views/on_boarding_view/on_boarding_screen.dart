@@ -39,7 +39,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   void _goToHome() {
-    Navigator.of(context).pushReplacementNamed(RouteNames.donorHomeView);
+    Navigator.of(context).pushReplacementNamed(RouteNames.donorBottomNavView);
   }
 
   @override

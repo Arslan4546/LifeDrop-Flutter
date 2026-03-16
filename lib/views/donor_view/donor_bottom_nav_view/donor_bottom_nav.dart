@@ -16,7 +16,7 @@ class DonorNavView extends StatelessWidget {
   final List<Widget> screens = [
     const DonorHomeView(),
     const DonorSearchView(),
-    const DonorRequestView(),
+    DonorRequestView(),
     const DonorAlertView(),
     const DonorProfileView(),
   ];

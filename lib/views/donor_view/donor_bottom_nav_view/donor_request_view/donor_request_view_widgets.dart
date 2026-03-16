@@ -38,7 +38,7 @@ class TabItemWidget extends StatelessWidget {
 class RequestTabBar extends StatelessWidget {
   final List<String> tabs;
   final int activeIndex;
-  final Function(int) onTabSelected;
+  final ValueChanged<int> onTabSelected;
 
   const RequestTabBar({
     super.key,
@@ -56,16 +56,41 @@ class RequestTabBar extends StatelessWidget {
         ),
       ),
       child: Row(
-        children: List.generate(
-          tabs.length,
-          (index) => GestureDetector(
-            onTap: () => onTabSelected(index),
-            child: TabItemWidget(
-              title: tabs[index],
-              isActive: activeIndex == index,
+        children: List.generate(tabs.length, (index) {
+          final bool isActive = index == activeIndex;
+
+          return Expanded(
+            child: InkWell(
+              onTap: () => onTabSelected(index),
+              borderRadius: BorderRadius.circular(8),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(
+                      color: isActive
+                          ? AppColors.primaryColor
+                          : Colors.transparent,
+                      width: 3,
+                    ),
+                  ),
+                ),
+                child: Text(
+                  tabs[index],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: isActive ? FontWeight.w600 : FontWeight.w500,
+                    color: isActive
+                        ? AppColors.primaryColor
+                        : Colors.grey.shade600,
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
+          );
+        }),
       ),
     );
   }
