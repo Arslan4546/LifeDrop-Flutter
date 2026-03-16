@@ -7,9 +7,12 @@ class DonorBottomNavBloc
   DonorBottomNavBloc() : super(const DonorBottomNavState(selectedIndex: 0)) {
     on<DonorBottomNavChanged>(donorBottomNavChanged);
   }
-  void donorBottomNavChanged(DonorBottomNavEvent event, emit) {
+  void donorBottomNavChanged(
+    DonorBottomNavEvent event,
+    Emitter<DonorBottomNavState> emit,
+  ) {
     if (event is DonorBottomNavChanged) {
-      emit(DonorBottomNavState(selectedIndex: event.index));
+      emit(state.copyWith(selectedIndex: event.index));
     }
   }
 }
