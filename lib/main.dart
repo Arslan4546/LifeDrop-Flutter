@@ -17,7 +17,7 @@ class LifeDropApp extends StatelessWidget {
       title: 'LifeDrop',
       theme: ThemeData(scaffoldBackgroundColor: AppColors.backgroundColor),
       onGenerateRoute: AppRoutes.generateRoute,
-      initialRoute: RouteNames.donorRequestView,
+      initialRoute: RouteNames.donorAlertView,
     );
   }
 }
