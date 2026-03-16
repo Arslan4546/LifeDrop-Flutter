@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/routes/route_names.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_alert_view/donor_alert_view.dart';
+import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_nav.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_profile_view/donor_profile_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_view/donor_request_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_view/donor_search_view.dart';
@@ -31,6 +32,22 @@ class AppRoutes {
           transitionDuration: const Duration(milliseconds: 600),
         );
 
+      case RouteNames.donorNavView:
+        return PageRouteBuilder(
+          pageBuilder: (ctx, anim, secAnim) => DonorNavView(),
+          transitionsBuilder: (ctx, animation, secAnim, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+
+            final tween = Tween(begin: begin, end: end);
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 600),
+        );
       case RouteNames.donorHomeView:
         return PageRouteBuilder(
           pageBuilder: (ctx, anim, secAnim) => DonorHomeView(),
