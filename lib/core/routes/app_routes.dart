@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/routes/route_names.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_alert_view/donor_alert_view.dart';
-import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_nav.dart';
+import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_bottom_nav.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_profile_view/donor_profile_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_view/donor_request_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_view/donor_search_view.dart';
 import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view.dart';
 import 'package:life_drop/views/on_boarding_view/on_boarding_screen.dart';
-import 'package:life_drop/views/splash_view/splash_screen.dart';
+import 'package:life_drop/views/splash_view/splash_view.dart';
 
 class AppRoutes {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RouteNames.splashView:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(builder: (_) => const SplashView());
 
       case RouteNames.onboardingView:
         return PageRouteBuilder(
@@ -32,7 +32,7 @@ class AppRoutes {
           transitionDuration: const Duration(milliseconds: 600),
         );
 
-      case RouteNames.donorNavView:
+      case RouteNames.donorBottomNavView:
         return PageRouteBuilder(
           pageBuilder: (ctx, anim, secAnim) => DonorNavView(),
           transitionsBuilder: (ctx, animation, secAnim, child) {

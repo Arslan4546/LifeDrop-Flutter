@@ -8,7 +8,7 @@ class RouteNames {
   static const signupView = "/signup";
 
   //donor route names
-  static const donorNavView = "/donor-nav";
+  static const donorBottomNavView = "/donor-bottom-nav";
   static const donorHomeView = "/donor-home";
   static const donorProfileView = "/donor-profile";
   static const donorRequestView = "/donor-request";

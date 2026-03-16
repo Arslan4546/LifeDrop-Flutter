@@ -31,6 +31,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
+  flutter_bloc: ^9.1.1
   google_fonts: ^8.0.2
   smooth_page_indicator: ^2.0.1
 
@@ -42,7 +43,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   equatable: ^2.0.8
-  flutter_bloc: ^9.1.1
   flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter

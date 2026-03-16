@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/routes/route_names.dart';
-import 'package:life_drop/views/on_boarding_view/on_boarding_widgets/on_boarding_widgets.dart';
+import 'package:life_drop/views/on_boarding_view/on_boarding_widgets.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
