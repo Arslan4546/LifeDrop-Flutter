@@ -16,10 +16,10 @@ class RouteNames {
   static const donorSearchView = "/donor-search";
 
   // recipient route names
-  static const recipientNavView = "/recipient-nav";
+  static const recipientBottomNavView = "/recipient-bottom-nav";
   static const recipientHomeView = "/recipient-home";
   static const recipientProfileView = "/recipient-profile";
-  static const recipientRequestView = "/recipient-request";
-  static const recipientAlertView = "/recipient-alert";
-  static const recipientSearchView = "/recipient-search";
+  static const recipientRequestsView = "/recipient-requests";
+  static const recipientCreateRequestView = "/recipient-create-request";
+  static const recipientDonorsView = "/recipient-donors";
 }

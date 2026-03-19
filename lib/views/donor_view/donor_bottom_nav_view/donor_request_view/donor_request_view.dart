@@ -60,6 +60,9 @@ class DonorRequestView extends StatelessWidget {
             expiry: "Expires in 3h",
             imageUrl:
                 "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1000",
+            onDonate: () {
+              print("Donate");
+            },
           ),
           RequestCard(
             hospitalName: "St. Jude Medical Center",
@@ -68,6 +71,9 @@ class DonorRequestView extends StatelessWidget {
             expiry: "Expires in 5h",
             imageUrl:
                 "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000",
+            onDonate: () {
+              print("Donate");
+            },
           ),
           RequestCard(
             hospitalName: "North Star Clinic",
@@ -76,6 +82,9 @@ class DonorRequestView extends StatelessWidget {
             expiry: "Expires in 1h",
             imageUrl:
                 "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1000",
+            onDonate: () {
+              print("Donate");
+            },
           ),
           const SizedBox(height: 80), // Space for Bottom Nav
         ],

@@ -12,6 +12,7 @@ import 'package:life_drop/views/splash_view/splash_view.dart';
 class AppRoutes {
   static Route generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      // Splash Screen
       case RouteNames.splashView:
         return MaterialPageRoute(builder: (_) => const SplashView());
 
@@ -31,10 +32,10 @@ class AppRoutes {
           },
           transitionDuration: const Duration(milliseconds: 600),
         );
-
+      // Donor Screens
       case RouteNames.donorBottomNavView:
         return PageRouteBuilder(
-          pageBuilder: (ctx, anim, secAnim) => DonorNavView(),
+          pageBuilder: (ctx, anim, secAnim) => DonorBottomNavView(),
           transitionsBuilder: (ctx, animation, secAnim, child) {
             const begin = Offset(1.0, 0.0);
             const end = Offset.zero;
@@ -72,7 +73,47 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const DonorAlertView());
       case RouteNames.donorProfileView:
         return MaterialPageRoute(builder: (_) => const DonorProfileView());
+      // Recipient Screens
+      case RouteNames.recipientBottomNavView:
+        return PageRouteBuilder(
+          pageBuilder: (ctx, anim, secAnim) => RecipientBottomNavView(),
+          transitionsBuilder: (ctx, animation, secAnim, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
 
+            final tween = Tween(begin: begin, end: end);
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 600),
+        );
+      // case RouteNames.recipientHomeView:
+      //   return PageRouteBuilder(
+      //     pageBuilder: (ctx, anim, secAnim) => RecipientHomeView(),
+      //     transitionsBuilder: (ctx, animation, secAnim, child) {
+      //       const begin = Offset(1.0, 0.0);
+      //       const end = Offset.zero;
+
+      //       final tween = Tween(begin: begin, end: end);
+
+      //       return SlideTransition(
+      //         position: animation.drive(tween),
+      //         child: child,
+      //       );
+      //     },
+      //     transitionDuration: const Duration(milliseconds: 600),
+      //   );
+      // case RouteNames.recipientProfileView:
+      //   return MaterialPageRoute(builder: (_) => const RecipientProfileView());
+      // case RouteNames.recipientRequestView:
+      //   return MaterialPageRoute(builder: (_) => RecipientRequestView());
+      // case RouteNames.recipientAlertView:
+      //   return MaterialPageRoute(builder: (_) => const RecipientAlertView());
+      // case RouteNames.recipientSearchView:
+      //   return MaterialPageRoute(builder: (_) => const RecipientSearchView());
       default:
         return MaterialPageRoute(
           builder: (_) =>
