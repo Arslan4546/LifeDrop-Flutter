@@ -9,7 +9,7 @@ import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view.dart'
 import 'package:life_drop/views/on_boarding_view/on_boarding_screen.dart';
 import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_bottom_nav.dart';
 import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_create_request_view/recipient_create_request_view.dart';
-import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_donor_view/recipient_donor_view.dart';
+import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_search_donor_view/recipient_search_donor_view.dart';
 import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_profile_view/recipient_profile_view.dart';
 import 'package:life_drop/views/recipient_view/recipient_home_view/recipient_home_view.dart';
 import 'package:life_drop/views/splash_view/splash_view.dart';

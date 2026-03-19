@@ -126,7 +126,6 @@ class _RecipientHomeViewState extends State<RecipientHomeView> {
         child: const Icon(Icons.add, color: Colors.white, size: 30),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomNavBar(),
     );
   }
 
