@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
-import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_donor_view/recipient_donor_view_widgets.dart';
+import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_search_donor_view/recipient_search_donor_view_widgets.dart';
 
 class RecipientSearchDonorView extends StatefulWidget {
   const RecipientSearchDonorView({super.key});
