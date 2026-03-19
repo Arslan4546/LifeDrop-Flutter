@@ -7,6 +7,7 @@ import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_v
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_view/donor_search_view.dart';
 import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view.dart';
 import 'package:life_drop/views/on_boarding_view/on_boarding_screen.dart';
+import 'package:life_drop/views/recipient_view/recipient_home_view/recipient_home_view.dart';
 import 'package:life_drop/views/splash_view/splash_view.dart';
 
 class AppRoutes {
@@ -74,25 +75,9 @@ class AppRoutes {
       case RouteNames.donorProfileView:
         return MaterialPageRoute(builder: (_) => const DonorProfileView());
       // Recipient Screens
-      case RouteNames.recipientBottomNavView:
-        return PageRouteBuilder(
-          pageBuilder: (ctx, anim, secAnim) => RecipientBottomNavView(),
-          transitionsBuilder: (ctx, animation, secAnim, child) {
-            const begin = Offset(1.0, 0.0);
-            const end = Offset.zero;
-
-            final tween = Tween(begin: begin, end: end);
-
-            return SlideTransition(
-              position: animation.drive(tween),
-              child: child,
-            );
-          },
-          transitionDuration: const Duration(milliseconds: 600),
-        );
-      // case RouteNames.recipientHomeView:
+      // case RouteNames.recipientBottomNavView:
       //   return PageRouteBuilder(
-      //     pageBuilder: (ctx, anim, secAnim) => RecipientHomeView(),
+      //     pageBuilder: (ctx, anim, secAnim) => RecipientBottomNavView(),
       //     transitionsBuilder: (ctx, animation, secAnim, child) {
       //       const begin = Offset(1.0, 0.0);
       //       const end = Offset.zero;
@@ -106,6 +91,22 @@ class AppRoutes {
       //     },
       //     transitionDuration: const Duration(milliseconds: 600),
       //   );
+      case RouteNames.recipientHomeView:
+        return PageRouteBuilder(
+          pageBuilder: (ctx, anim, secAnim) => RecipientHomeView(),
+          transitionsBuilder: (ctx, animation, secAnim, child) {
+            const begin = Offset(1.0, 0.0);
+            const end = Offset.zero;
+
+            final tween = Tween(begin: begin, end: end);
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+          transitionDuration: const Duration(milliseconds: 600),
+        );
       // case RouteNames.recipientProfileView:
       //   return MaterialPageRoute(builder: (_) => const RecipientProfileView());
       // case RouteNames.recipientRequestView:

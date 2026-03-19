@@ -10,8 +10,8 @@ import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_vi
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view.dart';
 
-class DonorNavView extends StatelessWidget {
-  DonorNavView({super.key});
+class DonorBottomNavView extends StatelessWidget {
+  DonorBottomNavView({super.key});
 
   final List<Widget> screens = [
     const DonorHomeView(),
