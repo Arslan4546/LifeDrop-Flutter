@@ -18,8 +18,8 @@ class RouteNames {
   // recipient route names
   static const recipientBottomNavView = "/recipient-bottom-nav";
   static const recipientHomeView = "/recipient-home";
-  static const recipientProfileView = "/recipient-profile";
-  static const recipientRequestsView = "/recipient-requests";
+  static const recipientSearchDonorsView = "/recipient-search-donors";
   static const recipientCreateRequestView = "/recipient-create-request";
-  static const recipientDonorsView = "/recipient-donors";
+  static const recipientRequestsView = "/recipient-requests";
+  static const recipientProfileView = "/recipient-profile";
 }
