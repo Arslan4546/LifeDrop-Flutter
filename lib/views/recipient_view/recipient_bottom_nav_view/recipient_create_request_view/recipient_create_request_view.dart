@@ -202,9 +202,6 @@ class _RecipientCreateRequestViewState
               ),
             ),
           ),
-
-          // Bottom Navigation
-          const AppBottomNav(),
         ],
       ),
     );
