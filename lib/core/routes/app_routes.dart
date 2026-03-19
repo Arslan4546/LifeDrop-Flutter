@@ -7,6 +7,7 @@ import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_request_v
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_search_view/donor_search_view.dart';
 import 'package:life_drop/views/donor_view/donor_home_view/donor_home_view.dart';
 import 'package:life_drop/views/on_boarding_view/on_boarding_screen.dart';
+import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_create_request_view/recipient_create_request_view.dart';
 import 'package:life_drop/views/recipient_view/recipient_bottom_nav_view/recipient_donor_view/recipient_donor_view.dart';
 import 'package:life_drop/views/recipient_view/recipient_home_view/recipient_home_view.dart';
 import 'package:life_drop/views/splash_view/splash_view.dart';
@@ -110,8 +111,8 @@ class AppRoutes {
         );
       // case RouteNames.recipientProfileView:
       //   return MaterialPageRoute(builder: (_) => const RecipientProfileView());
-      // case RouteNames.recipientRequestView:
-      //   return MaterialPageRoute(builder: (_) => RecipientRequestView());
+      case RouteNames.recipientCreateRequestView:
+        return MaterialPageRoute(builder: (_) => RecipientCreateRequestView());
       case RouteNames.recipientSearchDonorsView:
         return MaterialPageRoute(
           builder: (_) => const RecipientSearchDonorView(),
