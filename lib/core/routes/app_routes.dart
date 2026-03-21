@@ -128,8 +128,8 @@ class AppRoutes {
         return MaterialPageRoute(
           builder: (_) => const RecipientSearchDonorView(),
         );
-      case RouteNames.recipientRequestsView:
-        return MaterialPageRoute(builder: (_) => const RecipientRequestsView());
+      // case RouteNames.recipientRequestsView:
+      //   return MaterialPageRoute(builder: (_) => const RecipientRequestsView());
 
       default:
         return MaterialPageRoute(
