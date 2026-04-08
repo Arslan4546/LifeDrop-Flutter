@@ -228,7 +228,7 @@ class CustomTextField extends StatelessWidget {
   }
 }
 
-class CustomDropdownField extends StatelessWidget {
+class CustomDropdownField extends StatefulWidget {
   final String label;
   final String hint;
 
@@ -239,32 +239,77 @@ class CustomDropdownField extends StatelessWidget {
   });
 
   @override
+  State<CustomDropdownField> createState() => _CustomDropdownFieldState();
+}
+
+class _CustomDropdownFieldState extends State<CustomDropdownField> {
+  // List of blood types
+  final List<String> bloodTypes = [
+    'A+',
+    'A-',
+    'B+',
+    'B-',
+    'AB+',
+    'AB-',
+    'O+',
+    'O-',
+  ];
+  String? selectedValue;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: AppFonts.bodyLarge(weight: FontWeight.w500)),
+        Text(widget.label, style: AppFonts.bodyLarge(weight: FontWeight.w500)),
         const SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
-          decoration: BoxDecoration(
-            color: AppColors.cardColor,
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: AppColors.borderColor),
+        DropdownButtonFormField<String>(
+          value: selectedValue,
+          hint: Text(
+            widget.hint,
+            style: AppFonts.bodyMedium(color: Colors.grey.shade400),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                hint,
-                style: AppFonts.bodyMedium(color: Colors.grey.shade400),
-              ),
-              const Icon(
-                Icons.keyboard_arrow_down,
-                color: AppColors.textSecondaryColor,
-              ),
-            ],
+          icon: const Icon(
+            Icons.keyboard_arrow_down,
+            color: AppColors.textSecondaryColor,
           ),
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: AppColors.cardColor,
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 18,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(color: AppColors.borderColor),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(16),
+              borderSide: const BorderSide(
+                color: AppColors.primaryColor,
+                width: 2,
+              ),
+            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+          ),
+          // Styling the actual dropdown menu
+          dropdownColor: AppColors.cardColor,
+          borderRadius: BorderRadius.circular(16),
+          items: bloodTypes.map((String type) {
+            return DropdownMenuItem<String>(
+              value: type,
+              child: Text(type, style: AppFonts.bodyLarge()),
+            );
+          }).toList(),
+          onChanged: (String? newValue) {
+            setState(() {
+              selectedValue = newValue;
+            });
+          },
+          // Optional: Add validation
+          validator: (value) =>
+              value == null ? 'Please select a blood type' : null,
         ),
       ],
     );
