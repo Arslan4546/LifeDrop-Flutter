@@ -28,6 +28,14 @@ class RecipientBottomNavView extends StatelessWidget {
 
           /// Screen Switching
           body: IndexedStack(index: state.selectedIndex, children: screens),
+           floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: AppColors.primaryColor,
+        shape: const CircleBorder(),
+        elevation: 6,
+        child: const Icon(Icons.add, color: Colors.white, size: 32),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
 
           /// Bottom Navigation
           bottomNavigationBar:
@@ -72,3 +80,5 @@ class RecipientBottomNavView extends StatelessWidget {
     );
   }
 }
+
+
