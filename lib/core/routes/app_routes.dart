@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/routes/route_names.dart';
+import 'package:life_drop/views/auth_view/signup_view/signup_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_alert_view/donor_alert_view.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_bottom_nav.dart';
 import 'package:life_drop/views/donor_view/donor_bottom_nav_view/donor_profile_view/donor_profile_view.dart';
@@ -37,6 +38,11 @@ class AppRoutes {
           },
           transitionDuration: const Duration(milliseconds: 600),
         );
+      case RouteNames.signupView:
+        return MaterialPageRoute(builder: (_) => const SignUpView());
+      // case RouteNames.loginView:
+      //   return MaterialPageRoute(builder: (_) => const LoginView());
+
       // Donor Screens
       case RouteNames.donorBottomNavView:
         return PageRouteBuilder(
