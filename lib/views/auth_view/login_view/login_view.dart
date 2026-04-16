@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
+import 'package:life_drop/core/routes/route_names.dart';
 
 import 'package:life_drop/views/auth_view/login_view/login_view_widgets.dart';
 
@@ -167,7 +168,9 @@ class _LoginViewState extends State<LoginView> {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.signUpView);
+                    },
                     child: Text(
                       "Sign Up",
                       style: AppFonts.bodyMedium(

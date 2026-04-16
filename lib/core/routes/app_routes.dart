@@ -39,7 +39,7 @@ class AppRoutes {
           },
           transitionDuration: const Duration(milliseconds: 600),
         );
-      case RouteNames.signupView:
+      case RouteNames.signUpView:
         return MaterialPageRoute(builder: (_) => const SignUpView());
       case RouteNames.loginView:
         return MaterialPageRoute(builder: (_) => const LoginView());
