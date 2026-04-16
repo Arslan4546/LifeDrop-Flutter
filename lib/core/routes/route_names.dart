@@ -4,7 +4,7 @@ class RouteNames {
   static const onboardingView = "/onboarding";
 
   // auth route names
-  static const signupView = "/signup";
+  static const signUpView = "/signup";
   static const loginView = "/login";
 
   //donor route names

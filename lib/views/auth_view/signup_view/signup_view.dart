@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
+import 'package:life_drop/core/routes/route_names.dart';
 import 'package:life_drop/views/auth_view/signup_view/signup_view_widgets.dart';
 
 class SignUpView extends StatefulWidget {
@@ -116,11 +117,16 @@ class _SignUpViewState extends State<SignUpView> {
                     "Already have an account? ",
                     style: AppFonts.bodyMedium(),
                   ),
-                  Text(
-                    "Log In",
-                    style: AppFonts.bodyMedium(
-                      color: AppColors.primaryColor,
-                    ).copyWith(fontWeight: FontWeight.bold),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, RouteNames.loginView);
+                    },
+                    child: Text(
+                      "Log In",
+                      style: AppFonts.bodyMedium(
+                        color: AppColors.primaryColor,
+                      ).copyWith(fontWeight: FontWeight.bold),
+                    ),
                   ),
                 ],
               ),
@@ -132,4 +138,3 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 }
-
