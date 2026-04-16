@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "329500099737",
+    "project_id": "life-drop-521d5",
+    "storage_bucket": "life-drop-521d5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329500099737:android:06a0ab3e405a0a93812408",
+        "android_client_info": {
+          "package_name": "com.example.life_drop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDYTI3r8VC4mx3Ko4hZB2ibUvtDFFhzv8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
