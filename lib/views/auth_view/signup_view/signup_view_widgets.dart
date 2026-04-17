@@ -63,8 +63,16 @@ class RoleCard extends StatelessWidget {
 class CustomTextField extends StatelessWidget {
   final String label;
   final String hint;
+  final TextEditingController controller;
+  final bool isPassword;
 
-  const CustomTextField({super.key, required this.label, required this.hint});
+  const CustomTextField({
+    super.key,
+    required this.label,
+    required this.hint,
+    required this.controller,
+    required this.isPassword,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +82,8 @@ class CustomTextField extends StatelessWidget {
         Text(label, style: AppFonts.bodyLarge(weight: FontWeight.w500)),
         const SizedBox(height: 8),
         TextField(
+          controller: controller,
+          obscureText: isPassword,
           decoration: InputDecoration(
             hintText: hint,
             hintStyle: AppFonts.bodyMedium(color: Colors.grey.shade400),
@@ -101,11 +111,13 @@ class CustomTextField extends StatelessWidget {
 class CustomDropdownField extends StatefulWidget {
   final String label;
   final String hint;
+  final Function(String) onChanged;
 
   const CustomDropdownField({
     super.key,
     required this.label,
     required this.hint,
+    required this.onChanged,
   });
 
   @override
@@ -175,6 +187,7 @@ class _CustomDropdownFieldState extends State<CustomDropdownField> {
           onChanged: (String? newValue) {
             setState(() {
               selectedValue = newValue;
+              widget.onChanged(newValue!);
             });
           },
           // Optional: Add validation
