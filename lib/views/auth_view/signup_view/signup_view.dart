@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
+import 'package:life_drop/core/routes/route_names.dart';
 import 'package:life_drop/data/models/user_model/user_model.dart';
 import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_bloc.dart';
 import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_event.dart';
+import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_state.dart';
 import 'package:life_drop/views/auth_view/signup_view/signup_view_widgets.dart';
 
 class SignUpView extends StatefulWidget {
@@ -19,6 +21,8 @@ class _SignUpViewState extends State<SignUpView> {
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
   String selectedRole = 'Donor';
   String selectedBloodType = '';
@@ -102,12 +106,28 @@ class _SignUpViewState extends State<SignUpView> {
                 label: "Full Name",
                 hint: "Jane Doe",
                 controller: nameController,
+                isPassword: false,
               ),
               const SizedBox(height: 20),
               CustomTextField(
                 label: "Email Address",
                 hint: "jane@example.com",
                 controller: emailController,
+                isPassword: false,
+              ),
+              const SizedBox(height: 20),
+              CustomTextField(
+                label: "Password",
+                hint: "Enter your password",
+                controller: passwordController,
+                isPassword: true,
+              ),
+              const SizedBox(height: 20),
+              CustomTextField(
+                label: "Confirm Password",
+                hint: "Enter your password",
+                controller: confirmPasswordController,
+                isPassword: true,
               ),
               const SizedBox(height: 20),
               CustomDropdownField(
@@ -123,7 +143,51 @@ class _SignUpViewState extends State<SignUpView> {
               const SizedBox(height: 40),
 
               // Action Button
-              PrimaryButton(text: "Create Account", onPressed: () {}),
+              BlocBuilder<AuthBloc, AuthState>(
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+                  return PrimaryButton(
+                    text: "Create Account",
+                    onPressed: () {
+                      if (nameController.text.isEmpty ||
+                          emailController.text.isEmpty ||
+                          passwordController.text.isEmpty ||
+                          confirmPasswordController.text.isEmpty ||
+                          selectedBloodType.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please fill all the fields"),
+                          ),
+                        );
+                        return;
+                      }
+                      if (passwordController.text !=
+                          confirmPasswordController.text) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Passwords do not match"),
+                          ),
+                        );
+                        return;
+                      }
+                      context.read<AuthBloc>().add(
+                        RegisterEvent(
+                          UserModel(
+                            uid: '',
+                            name: nameController.text,
+                            email: emailController.text,
+                            role: selectedRole,
+                            bloodType: selectedBloodType,
+                          ),
+                          passwordController.text,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
 
               const SizedBox(height: 24),
 
@@ -137,18 +201,7 @@ class _SignUpViewState extends State<SignUpView> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      context.read<AuthBloc>().add(
-                        RegisterEvent(
-                          UserModel(
-                            uid: '',
-                            name: nameController.text,
-                            email: emailController.text,
-                            role: selectedRole,
-                            bloodType: selectedBloodType,
-                          ),
-                          passwordController.text,
-                        ),
-                      );
+                      Navigator.pushNamed(context, RouteNames.loginView);
                     },
                     child: Text(
                       "Log In",
