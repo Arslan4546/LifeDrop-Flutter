@@ -4,6 +4,7 @@ import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/routes/app_routes.dart';
 import 'package:life_drop/core/routes/route_names.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:life_drop/core/utils/globel_app_size.dart';
 import 'package:life_drop/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -22,6 +23,10 @@ class LifeDropApp extends StatelessWidget {
       providers: BlocProviders.providers,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        builder: (context, child) {
+          AppSize.init(context);
+          return child!;
+        },
         title: 'LifeDrop',
         theme: ThemeData(scaffoldBackgroundColor: AppColors.backgroundColor),
         onGenerateRoute: AppRoutes.generateRoute,

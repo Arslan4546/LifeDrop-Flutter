@@ -5,10 +5,12 @@ import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
 import 'package:life_drop/core/routes/route_names.dart';
 import 'package:life_drop/core/utils/flush_bar.dart';
+import 'package:life_drop/core/utils/globel_app_size.dart';
 import 'package:life_drop/data/models/user_model/user_model.dart';
 import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_bloc.dart';
 import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_event.dart';
 import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_state.dart';
+import 'package:life_drop/views/auth_view/auth_widgets.dart';
 import 'package:life_drop/views/auth_view/signup_view/signup_view_widgets.dart';
 
 class SignUpView extends StatefulWidget {
@@ -29,9 +31,16 @@ class _SignUpViewState extends State<SignUpView> {
   String selectedBloodType = '';
 
   @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthSuccess) {
@@ -67,7 +76,9 @@ class _SignUpViewState extends State<SignUpView> {
         ),
         body: SafeArea(
           child: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.06),
+            padding: EdgeInsets.symmetric(
+              horizontal: AppSize.screenWidth * 0.06,
+            ),
             child: Column(
               children: [
                 const SizedBox(height: 20),

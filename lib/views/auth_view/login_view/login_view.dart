@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
 import 'package:life_drop/core/routes/route_names.dart';
+import 'package:life_drop/core/utils/globel_app_size.dart';
 
 import 'package:life_drop/views/auth_view/login_view/login_view_widgets.dart';
 
@@ -19,14 +20,13 @@ class _LoginViewState extends State<LoginView> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final bool isSmallScreen = size.width < 600;
+    final bool isSmallScreen = AppSize.screenWidth < 600;
 
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           padding: EdgeInsets.symmetric(
-            horizontal: isSmallScreen ? 24.0 : size.width * 0.2,
+            horizontal: isSmallScreen ? 24.0 : AppSize.screenWidth * 0.2,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
