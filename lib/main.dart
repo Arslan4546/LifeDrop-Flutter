@@ -4,8 +4,8 @@ import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/routes/app_routes.dart';
 import 'package:life_drop/core/routes/route_names.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:life_drop/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
