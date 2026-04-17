@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
-import 'package:life_drop/core/routes/route_names.dart';
+import 'package:life_drop/data/models/user_model/user_model.dart';
+import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_bloc.dart';
+import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_event.dart';
 import 'package:life_drop/views/auth_view/signup_view/signup_view_widgets.dart';
 
 class SignUpView extends StatefulWidget {
@@ -13,7 +16,12 @@ class SignUpView extends StatefulWidget {
 }
 
 class _SignUpViewState extends State<SignUpView> {
-  String selectedRole = 'Donor'; // State for role selection
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  String selectedRole = 'Donor';
+  String selectedBloodType = '';
 
   @override
   Widget build(BuildContext context) {
@@ -90,16 +98,26 @@ class _SignUpViewState extends State<SignUpView> {
               const SizedBox(height: 32),
 
               // Form Fields
-              const CustomTextField(label: "Full Name", hint: "Jane Doe"),
-              const SizedBox(height: 20),
-              const CustomTextField(
-                label: "Email Address",
-                hint: "jane@example.com",
+              CustomTextField(
+                label: "Full Name",
+                hint: "Jane Doe",
+                controller: nameController,
               ),
               const SizedBox(height: 20),
-              const CustomDropdownField(
+              CustomTextField(
+                label: "Email Address",
+                hint: "jane@example.com",
+                controller: emailController,
+              ),
+              const SizedBox(height: 20),
+              CustomDropdownField(
                 label: "Blood Type",
                 hint: "Select your blood type",
+                onChanged: (value) {
+                  setState(() {
+                    selectedBloodType = value;
+                  });
+                },
               ),
 
               const SizedBox(height: 40),
@@ -119,7 +137,18 @@ class _SignUpViewState extends State<SignUpView> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, RouteNames.loginView);
+                      context.read<AuthBloc>().add(
+                        RegisterEvent(
+                          UserModel(
+                            uid: '',
+                            name: nameController.text,
+                            email: emailController.text,
+                            role: selectedRole,
+                            bloodType: selectedBloodType,
+                          ),
+                          passwordController.text,
+                        ),
+                      );
                     },
                     child: Text(
                       "Log In",
