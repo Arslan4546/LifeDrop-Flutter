@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:life_drop/app_widgets/app_loader.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
 import 'package:life_drop/core/routes/route_names.dart';
@@ -110,26 +110,44 @@ class _SignUpViewState extends State<SignUpView> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Expanded(
-                      child: RoleCard(
-                        title: "I am a Donor",
-                        icon: Icons.volunteer_activism,
-                        isSelected: selectedRole == 'Donor',
-                        onTap: () => setState(() => selectedRole = 'Donor'),
-                      ),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: RoleCard(
-                        title: "I am a Recipient",
-                        icon: Icons.medical_services,
-                        isSelected: selectedRole == 'Recipient',
-                        onTap: () => setState(() => selectedRole = 'Recipient'),
-                      ),
-                    ),
-                  ],
+                BlocBuilder<AuthBloc, AuthState>(
+                  builder: (context, state) {
+                    String role = 'Donor';
+
+                    if (state is AuthInitial) {
+                      role = state.role;
+                    }
+
+                    return Row(
+                      children: [
+                        Expanded(
+                          child: RoleCard(
+                            title: "I am a Donor",
+                            icon: Icons.volunteer_activism,
+                            isSelected: role == 'Donor',
+                            onTap: () {
+                              context.read<AuthBloc>().add(
+                                ChangeRoleEvent('Donor'),
+                              );
+                            },
+                          ),
+                        ),
+                        const SizedBox(width: 16),
+                        Expanded(
+                          child: RoleCard(
+                            title: "I am a Recipient",
+                            icon: Icons.medical_services,
+                            isSelected: role == 'Recipient',
+                            onTap: () {
+                              context.read<AuthBloc>().add(
+                                ChangeRoleEvent('Recipient'),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
 
                 const SizedBox(height: 32),
@@ -179,7 +197,7 @@ class _SignUpViewState extends State<SignUpView> {
                 BlocBuilder<AuthBloc, AuthState>(
                   builder: (context, state) {
                     if (state is AuthLoading) {
-                      return const Center(child: CircularProgressIndicator());
+                      return const AppLoader(showText: false, size: 40);
                     }
                     return PrimaryButton(
                       text: "Create Account",
@@ -203,13 +221,20 @@ class _SignUpViewState extends State<SignUpView> {
                           );
                           return;
                         }
+
+                        final state = context.read<AuthBloc>().state;
+
+                        String role = 'Donor';
+                        if (state is AuthInitial) {
+                          role = state.role;
+                        }
                         context.read<AuthBloc>().add(
                           RegisterEvent(
                             UserModel(
                               uid: '',
                               name: nameController.text,
                               email: emailController.text,
-                              role: selectedRole,
+                              role: role,
                               bloodType: selectedBloodType,
                             ),
                             passwordController.text,
