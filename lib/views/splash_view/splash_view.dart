@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:life_drop/core/constants/app_assets.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
@@ -16,6 +18,38 @@ class _SplashViewState extends State<SplashView>
   late AnimationController _animationController;
   late Animation<double> _progressAnimation;
 
+  Future<void> _checkUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+
+    if (user == null) {
+      Navigator.pushReplacementNamed(context, RouteNames.onboardingView);
+      return;
+    }
+
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
+
+    final userData = doc.data();
+
+    if (userData == null) {
+      Navigator.pushReplacementNamed(context, RouteNames.loginView);
+      return;
+    }
+
+    final role = userData['role'];
+
+    if (role == "Donor") {
+      Navigator.pushReplacementNamed(context, RouteNames.donorBottomNavView);
+    } else {
+      Navigator.pushReplacementNamed(
+        context,
+        RouteNames.recipientBottomNavView,
+      );
+    }
+  }
+
   @override
   void initState() {
     super.initState();
@@ -28,9 +62,9 @@ class _SplashViewState extends State<SplashView>
       CurvedAnimation(parent: _animationController, curve: Curves.easeOutQuart),
     );
 
-    _animationController.forward().then((_) {
+    _animationController.forward().then((_) async {
       if (mounted) {
-        Navigator.pushReplacementNamed(context, RouteNames.onboardingView);
+        await _checkUser();
       }
     });
   }
