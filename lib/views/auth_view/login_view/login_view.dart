@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:life_drop/core/constants/app_colors.dart';
 import 'package:life_drop/core/constants/app_fonts.dart';
 import 'package:life_drop/core/routes/route_names.dart';
+import 'package:life_drop/core/utils/flush_bar.dart';
 import 'package:life_drop/core/utils/globel_app_size.dart';
+import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_bloc.dart';
+import 'package:life_drop/viewmodels/auth_viewmodel/auth_bloc/auth_event.dart';
 
 import 'package:life_drop/views/auth_view/login_view/login_view_widgets.dart';
 
@@ -116,7 +120,23 @@ class _LoginViewState extends State<LoginView> {
               const SizedBox(height: 20),
 
               // Login Button
-              PrimaryButton(text: "Login", onPressed: () {}),
+              PrimaryButton(
+                text: "Login",
+                onPressed: () {
+                  if (_emailController.text.isEmpty ||
+                      _passwordController.text.isEmpty) {
+                    FlushbarHelper.showError(
+                      context: context,
+                      message: "Please fill all fields",
+                    );
+                    return;
+                  }
+
+                  context.read<AuthBloc>().add(
+                    LoginEvent(_emailController.text, _passwordController.text),
+                  );
+                },
+              ),
 
               const SizedBox(height: 30),
 
